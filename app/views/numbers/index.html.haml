@@ -1,0 +1,45 @@
+%link{:href=>'/fonts/Playball-Regular.ttf', :rel=>'stylesheet', :type=>'text/css'}
+= image_tag 'logo.png', :class => 'logo'
+%h1 Pro Loco Montecastrilli - Tombolata della befana 2012
+%table{:class=>"numbers_table", :align=>"center"}
+  - column_size = 10
+  - (1..(90/column_size)).each do |n|
+    %tr
+      - ((n-1)*column_size+1..(n)*column_size).each do |number|
+        - if @numbers_hash[number]
+          %td{:align=>"center", :class=>"ex", :id => "cell_#{number}"}
+            %b= number
+        - else
+          %td{:align=>"center", :class=>"nex", :id => "cell_#{number}"}
+            %b= number
+
+:coffeescript
+  $(document).ready ->
+    window.updateNumbers = () ->
+      $.getJSON('/numbers', (data) ->
+        $.each(data, (key, val) ->
+          target = $("#cell_" + key)
+          if val
+            if target.hasClass("nex")
+              showNumber(key)
+              target.attr('class', 'ex')
+              console.log 'ho cambiato qualcosa?'
+              console.log target
+          else
+            if target.hasClass("ex")
+              target.attr('class', 'nex')
+        )
+      setTimeout('updateNumbers()', 1000)
+      )
+      
+    updateNumbers()
+
+  window.showNumber = (number) ->
+    $.fsoverlay.show("<center><div class='overlaynumber'><b>" + number + "</b></div></center>", 
+        (contentBoxID) -> 
+          setTimeout("$.fsoverlay.hide()", 3000) 
+        , 
+        'bgcolor' : '#99B297',
+        'fadein' : 500,
+        'fadeout' : 500
+    )

@@ -1,0 +1,18 @@
+Numero Estratto
+= form_for(@number, :remote=>true) do |f|
+  .field
+    = f.number_field :value
+    
+Numero da Eliminare
+= form_for(@number, :method => :delete, :remote=>true, :id => 'delete_number') do |f|
+  .field
+    = f.number_field :value
+
+:coffeescript
+  $(document).ready ->
+    $("#delete_number").live("ajax:complete", (event,xhr,status) ->
+      $('#delete_number #number_value').val('')
+      )
+    $("#new_number").live("ajax:complete", (event,xhr,status) ->
+      $('#new_number #number_value').val('')
+      )

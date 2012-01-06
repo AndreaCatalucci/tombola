@@ -1,0 +1,49 @@
+body {
+  margin:0;
+  background-color: #99B297;
+}
+
+div.overlaynumber {
+  font-size: 40em;
+  background-color: #E0EBE5;
+  color: #930F16;
+}
+
+img.logo {
+  float: left;
+  height: 4em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  padding-left: 1em;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  padding-top: 1em;
+  padding-left: 5em;
+  font-family: 'Playball', cursive;
+  color: #4c0016;
+}
+table.numbers_table {
+  width: 100%;
+  margin: auto;
+}
+table.numbers_table {
+  border: 1px solid #86acb5;
+  border-collapse:collapse;
+  td  {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #86acb5;
+    font-size: 3em;
+  }
+  td.ex  {
+    background-color: #4C0016;
+    color: #78a8e8;
+  }
+  td.nex  {
+    background-color: #c4b873;
+    color: #A17345;
+  }
+}
